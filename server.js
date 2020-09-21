@@ -70,7 +70,7 @@ app.use(ctx => {
     // 1. 单文件组件解析
     const p = path.resolve(__dirname, url.split('?')[0].slice(1))
     // 解析单文佳年组建，需要官方的库
-    const { descriptor } = compilerSfc.parse(fs.readFileSync(p,'utf-8'))
+    const { descriptor } = compilerSfc.parse(fs.readFileSync(p,'utf-8'))//安装 @vue/compile-sfc 模块用来解析vue文件
     if(!query.type){
       // js内容
       ctx.type = 'application/javascript'
@@ -83,7 +83,7 @@ export default __script
     }else if(query.type=="template"){
       // 解析我们的template 编程render函数
       const template = descriptor.template
-      const render = compilerDom.compile(template.content, {mode:"module"}).code
+      const render = compilerDom.compile(template.content, {mode:"module"}).code //安装 @vue/compile-dom 模块用来解析template模版
       ctx.type = 'application/javascript'
       
       ctx.body = rewriteImport(render)
